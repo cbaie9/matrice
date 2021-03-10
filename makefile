@@ -1,4 +1,4 @@
 
 test:
-	python -m doctest matrix.py
+	python -B -m doctest matrix.py
 
