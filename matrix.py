@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 r"""
 Matrice
 
@@ -36,7 +37,6 @@ class Matrice:
 
         EXAMPLES::
 
-            >>> #from matrix import Matrice
             >>> m = Matrice(3, 3, [1,2,3,4,5,6,7,8,9])
 
         """
@@ -57,7 +57,6 @@ class Matrice:
 
         EXAMPLES::
 
-            >>> #from matrix import Matrice
             >>> m = Matrice(3, 3, [1,2,3,4,5,6,7,8,9])
             >>> m[0,0]
             1
@@ -95,7 +94,6 @@ class Matrice:
 
         EXAMPLES::
 
-            >>> #from matrix import Matrice
             >>> m = Matrice(3, 3, [1,2,3,4,5,6,7,8,9])
             >>> m
             [1 2 3]
@@ -134,7 +132,6 @@ class Matrice:
 
         EXAMPLES::
 
-            >>> #from matrix import Matrice
             >>> m = Matrice(3, 3, [1,2,3,4,5,6,7,8,9])
             >>> -m
             [-1 -2 -3]
