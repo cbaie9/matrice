@@ -149,10 +149,10 @@ class Matrice:
         return Matrice(self._nrows, other._ncols, result)
 
     def nombre_de_colonnes(self):
-        raise NotImplementedError
+        return self._ncols
 
     def nombre_de_lignes(self):
-        raise NotImplementedError
+        return self._nrows
 
     def transpose(self):
         r"""
