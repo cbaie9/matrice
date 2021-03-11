@@ -103,11 +103,29 @@ class Matrice:
             "[1 2 3]\n[4 5 6]\n[7 8 9]"
 
         """
-        raise NotImplementedError
-
+        for i in range(1,self._nrows+1):
+            print(self._entries[self._ncols*(i-1):self._ncols*i])
+        return 0
     def __add__(self, other):
-        raise NotImplementedError
+        r"""
+        Retourne l'addition de deux matrice en chaîne de caractères de la matrice.
 
+        EXAMPLES::
+
+            >>> m = Matrice(3, 3, [1,2,3,4,5,6,7,8,9])
+            >>> n= Matrice(3, 3, [1,2,3,4,5,6,7,8,9])
+            >>> n+m
+            [2 4 6]
+            [8 10 12]
+            [14 16 18]
+
+        """
+        res = Matrice(self._nrows, self._ncols, self._entries)
+        for i in range(0,self._nrows):
+            for j in range(0,self._ncols):
+                x = self._entries[self._ncols * i + j] + other._entries[self._ncols * i + j]
+                res._entries[self._ncols * i + j]=x
+        return res
     def __sub__(self, other):
         raise NotImplementedError
 
