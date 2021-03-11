@@ -103,7 +103,17 @@ class Matrice:
             "[1 2 3]\n[4 5 6]\n[7 8 9]"
 
         """
-        raise NotImplementedError
+        result = ""
+        for i in range(0, self._nrows):
+            result += "["
+            for j in range(0, self._ncols):
+                if j > 0:
+                    result += " "
+                result += str(self._L[i * self._ncols + j])
+                if j < self._ncols - 1:
+                    result += " "
+            result += "]\n"
+        return result
 
     def __add__(self, other):
         raise NotImplementedError
@@ -112,7 +122,31 @@ class Matrice:
         raise NotImplementedError
 
     def __mul__(self, other):
-        raise NotImplementedError
+        r"""
+        Retourne le résultat de la multiplication de la matrice courant par une
+        autre matrice.
+
+        EXAMPLES::
+
+            >>> m1 = Matrice(3, 2, [1, 3, 8,-2, 1, 10])
+            >>> m2 = Matrice(2, 3, [5, 1, 4, 7, 7, 2])
+            >>> m1 * m2
+            [73 38]
+            [64 25]
+
+        """
+        if self._ncols != other._nrows:
+            raise ValueError(
+                "Dimensions de matrices incompatibles pour la multiplication!"
+            )
+        result = [0] * (self._nrows * other._ncols)
+        for i in range(0, self._nrows):
+            for j in range(0, self._ncols):
+                for k in range(0, other._ncols):
+                    result[i * other._ncols + k] +=
+                    self._L[i * self._ncols + j] *
+                    other._L[j * other._ncols + k] 
+        return Matrice(self._nrows, other._ncols, result)
 
     def nombre_de_colonnes(self):
         raise NotImplementedError
