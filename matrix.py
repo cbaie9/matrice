@@ -190,7 +190,10 @@ class Matrice:
             [-4 -5 -6]
             [-7 -8 -9]
         """
-        raise NotImplementedError
+        entries = []
+        for element in self._entries:
+            entries.append((-1)*element)
+        return Matrice(self._ncols, self._nrows, entries)
 
     def determinant(self):
         raise NotImplementedError
