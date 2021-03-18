@@ -103,9 +103,6 @@ class Matrice:
             "[1 2 3]\n[4 5 6]\n[7 8 9]"
 
         """
-        for i in range(1,self._nrows+1):
-            print(self._entries[self._ncols*(i-1):self._ncols*i])
-        return 0
         result = ""
         for i in range(0, self._nrows):
             result += "["
@@ -176,7 +173,6 @@ class Matrice:
         r"""
         Retourne la matrice transposée.
         """
-        raise NotImplementedError
 
     def __neg__(self):
         r"""
