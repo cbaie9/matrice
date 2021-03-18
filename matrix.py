@@ -136,10 +136,9 @@ class Matrice:
                 res._entries[self._ncols * i + j]=x
         return res
     def __sub__(self, other):
-        raise NotImplementedError
-
+        return Matrice.__add__(self,Matrice.__neg__(other))
     def __mul__(self, other):
-        r"""
+        r"""ipyt
         Retourne le résultat de la multiplication de la matrice courant par une
         autre matrice.
 

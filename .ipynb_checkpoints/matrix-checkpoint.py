@@ -132,17 +132,16 @@ class Matrice:
             [14 16 18]
 
         """
-        res = result = [0] * (self._nrows * other._ncols)
+        res = Matrice(self._nrows, self._ncols, self._entries)
         for i in range(0,self._nrows):
             for j in range(0,self._ncols):
                 x = self._entries[self._ncols * i + j] + other._entries[self._ncols * i + j]
                 res._entries[self._ncols * i + j]=x
         return res
     def __sub__(self, other):
-        raise NotImplementedError
-
+        return Matrice.__add__(self,Matrice.__neg__(other))
     def __mul__(self, other):
-        r"""
+        r"""ipyt
         Retourne le résultat de la multiplication de la matrice courant par une
         autre matrice.
 
@@ -190,7 +189,10 @@ class Matrice:
             [-4 -5 -6]
             [-7 -8 -9]
         """
-        raise NotImplementedError
+        entries = []
+        for element in self._entries:
+            entries.append((-1)*element)
+        return Matrice(self._ncols, self._nrows, entries)
 
     def determinant(self):
         raise NotImplementedError
