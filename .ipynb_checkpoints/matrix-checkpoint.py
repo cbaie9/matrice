@@ -132,7 +132,7 @@ class Matrice:
             [14 16 18]
 
         """
-        res = Matrice(self._nrows, self._ncols, self._entries)
+        res = result = [0] * (self._nrows * other._ncols)
         for i in range(0,self._nrows):
             for j in range(0,self._ncols):
                 x = self._entries[self._ncols * i + j] + other._entries[self._ncols * i + j]
