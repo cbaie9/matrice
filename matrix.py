@@ -172,7 +172,20 @@ class Matrice:
     def transpose(self):
         r"""
         Retourne la matrice transposée.
+        
+        EXAMPLES::
+
+            >>> m1 = Matrice(3, 2, [1, 3, 8,-2, 1, 10])
+            >>> m1.transpose()
+            [1  -2]
+            [3  1]
+            [8  10]
         """
+        result = [0] * (self._nrows * self._ncols)
+        for i in range(0, self._nrows):
+            for j in range(0, self._ncols):
+                result[j * self._nrows + i] = self._L[i * self._ncols + j]
+        return Matrice(self._nrows, self._ncols, result)
 
     def __neg__(self):
         r"""
