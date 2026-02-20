@@ -209,9 +209,8 @@ class Matrice:
         for i in range(len(M)):
              p *= M[i][i]
         return p
-        raise NotImplementedError
 
-     def inverse(self):
+    def inverse(self):
         """
         Retourne l'inverse de la matrice.
         
