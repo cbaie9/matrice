@@ -204,13 +204,93 @@ class Matrice:
         return Matrice(self._ncols, self._nrows, entries)
 
     def determinant(self):
+        pivot_lignes(self)
+        p = 1
+        for i in range(len(M)):
+             p *= M[i][i]
+        return p
         raise NotImplementedError
 
-    def inverse(self):
-        raise NotImplementedError
+     def inverse(self):
+        """
+        Retourne l'inverse de la matrice.
+        
+        La matrice doit être carrée et inversible (déterminant non nul).
+        
+        EXAMPLES::
+        
+            >>> m = Matrice(2, 2, [4, 7, 2, 6])
+            >>> inv = m.inverse()
+            >>> inv
+            [0.6 -0.7]
+            [-0.2 0.4]
+            
+            >>> # Vérification: m * inv doit donner la matrice identité
+            >>> identite = m * inv
+            >>> round(identite[0,0], 10)  # Devrait être 1
+            1.0
+            >>> round(identite[0,1], 10)  # Devrait être 0
+            0.0
+            >>> round(identite[1,0], 10)  # Devrait être 0
+            0.0
+            >>> round(identite[1,1], 10)  # Devrait être 1
+            1.0
+        """
+        if self._nrows != self._ncols:
+            raise ValueError("L'inverse n'est défini que pour les matrices carrées")
+        
+        n = self._nrows
+        
+        # Calcul du déterminant
+        det = self.determinant()
+        if det == 0:
+            raise ValueError("La matrice n'est pas inversible (déterminant nul)")
+        
+        # Cas particulier pour une matrice 1x1
+        if n == 1:
+            return Matrice(1, 1, [1.0 / self._entries[0]])
+        
+        # Cas particulier pour une matrice 2x2
+        if n == 2:
+            a, b, c, d = self._entries
+            inv_det = 1.0 / det
+            return Matrice(2, 2, [d * inv_det, -b * inv_det, -c * inv_det, a * inv_det])
+        
+        # Méthode de la matrice adjointe (comatrice) pour les matrices plus grandes
+        # Calcul de la matrice des cofacteurs
+        cofactor_matrix_entries = [0] * (n * n)
+        
+        for i in range(n):
+            for j in range(n):
+                submatrix = self._get_submatrix(i, j)
+                cofactor = ((-1) ** (i + j)) * submatrix.determinant()
+                cofactor_matrix_entries[j * n + i] = cofactor  # Transposée directement
+        
+        # Multiplication par 1/det
+        inv_det = 1.0 / det
+        inverse_entries = [cofactor * inv_det for cofactor in cofactor_matrix_entries]
+        
+        return Matrice(n, n, inverse_entries)
 
     def polynome_caracteristique(self):
         raise NotImplementedError
 
     def valeurs_propres(self):
         raise NotImplementedError
+        
+def pivot_lignes(self):
+    for i in range(len(self)):
+            j = recherche_pivot_lignes(self, i)
+            if j != i:
+                echange_lignes(M, i, j)
+            if M[i][i] != 0:
+                for j in range(i + 1, len(M)):
+                    transvection_ligne(M, j, i, -M[j][i] / M[i][i])
+    return M
+def recherche_pivot_lignes(self, i):
+    m = abs(M[i][i])
+    j = i
+    for k in range(i + 1, len(M)):
+        if abs(M[i][j]) > m:
+            j = k
+    return j
